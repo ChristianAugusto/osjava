@@ -1,4 +1,4 @@
-package system.models;
+package com.christian.osjava.models;
 
 public class PeripheralsTask {
     
