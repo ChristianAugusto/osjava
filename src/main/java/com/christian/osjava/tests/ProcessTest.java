@@ -22,9 +22,16 @@ public class ProcessTest {
 
 		if (memoryAllocated) {
 			System.out.println("memory allocated");
-		} else {
+		}
+		else {
 			System.out.println("memory not allocated");
 		}
+
+		System.out.println(gson.toJson(testQueue));
+
+		Process aux = testQueue.remove();
+
+		System.out.println(aux);
 
 		System.out.println(gson.toJson(testQueue));
 

@@ -5,6 +5,9 @@ import com.google.gson.Gson;
 
 public class Process {
 	private String id;
+	/**
+	 * Real Time 0 - User 1,2,3
+	 */
 	private char priority;
 	private int arrivalTime;
 	private byte processingTime; // Seconds

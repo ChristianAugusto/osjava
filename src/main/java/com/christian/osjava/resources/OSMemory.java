@@ -54,7 +54,8 @@ public class OSMemory {
 				for (j = i + 1; available_bytes < qtdMemory && j < Constants.SYSTEM_MEMORY_TOTAL; j++) {
 					if (MEMORY[j].getProcessId() == null) {
 						available_bytes++;
-					} else {
+					}
+					else {
 						break;
 					}
 				}

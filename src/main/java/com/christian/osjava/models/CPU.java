@@ -2,9 +2,11 @@ package com.christian.osjava.models;
 
 public class CPU {
 	private String processId;
+	private boolean dispatcherRunning;
 
-	public CPU() {
+	public CPU(boolean dispatcherRunning) {
 		this.setProcessId(null);
+		this.dispatcherRunning = dispatcherRunning;
 	}
 
 	public String getProcessId() {
@@ -13,5 +15,13 @@ public class CPU {
 
 	public void setProcessId(String processId) {
 		this.processId = processId;
+	}
+
+	public boolean isDispatcherRunning() {
+		return dispatcherRunning;
+	}
+
+	public void finishDispatcher() {
+		this.dispatcherRunning = false;
 	}
 }

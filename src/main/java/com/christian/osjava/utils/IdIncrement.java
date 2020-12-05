@@ -17,7 +17,8 @@ public class IdIncrement {
 				numbers[i] = (byte) (oldNumber + 1);
 				normalIncrement = true;
 				break;
-			} else {
+			}
+			else {
 				numbers[i] = (byte) 0;
 			}
 		}

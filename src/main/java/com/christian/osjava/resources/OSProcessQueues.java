@@ -1,6 +1,7 @@
 package com.christian.osjava.resources;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 import com.christian.osjava.config.Constants;
 import com.christian.osjava.models.Process;
@@ -70,31 +71,76 @@ public class OSProcessQueues {
 		Logger.info("OSProcessQueues finished with success");
 	}
 
-	public void addProcessOnFE(Process p) {
+	public static void addProcessOnFE(Process p) {
 		FE.add(p);
 	}
 
-	public void addProcessOnFTR(Process p) {
+	public static Process getProcessFromFE() {
+		try {
+			return FE.remove();
+		}
+		catch (NoSuchElementException e) {
+			return null;
+		}
+	}
+
+	public static void addProcessOnFTR(Process p) {
 		if (p.getPriority() == Constants.REAL_TIME_PROCESS_PRIORITY) {
 			FTR.add(p);
 		}
 	}
 
-	public void addProcessOnFU(Process p) {
+	public static Process getProcessFromFTR() {
+		try {
+			return FTR.remove();
+		}
+		catch (NoSuchElementException e) {
+			return null;
+		}
+	}
+
+	public static void addProcessOnFU(Process p) {
 		if (p.getPriority() != Constants.REAL_TIME_PROCESS_PRIORITY) {
 			FU.add(p);
 		}
 	}
 
-	public void addProcessOnFU2(Process p) {
+	public static Process getProcessFromFU() {
+		try {
+			return FU.remove();
+		}
+		catch (NoSuchElementException e) {
+			return null;
+		}
+	}
+
+	public static void addProcessOnFU2(Process p) {
 		if (p.getPriority() != Constants.REAL_TIME_PROCESS_PRIORITY) {
 			FU2.add(p);
 		}
 	}
 
-	public void addProcessOnFU3(Process p) {
+	public static Process getProcessFromFU2() {
+		try {
+			return FU2.remove();
+		}
+		catch (NoSuchElementException e) {
+			return null;
+		}
+	}
+
+	public static void addProcessOnFU3(Process p) {
 		if (p.getPriority() != Constants.REAL_TIME_PROCESS_PRIORITY) {
 			FU3.add(p);
+		}
+	}
+
+	public static Process getProcessFromFU3() {
+		try {
+			return FU3.remove();
+		}
+		catch (NoSuchElementException e) {
+			return null;
 		}
 	}
 }
