@@ -33,8 +33,7 @@ public class OSMemoryTaskQueue {
 	public static MemoryTask getMemoryTaskFromMTQ() {
 		try {
 			return MTQ.remove();
-		}
-		catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			return null;
 		}
 	}
