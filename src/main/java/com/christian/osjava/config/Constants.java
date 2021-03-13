@@ -15,8 +15,11 @@ public class Constants {
 	public static final short MEMORY_TASK_DEALLOCATE_TO_ALLOCATE = 3;
 	public static final short PERIPHERALS_TASK_ALLOCATE = 1;
 	public static final short PERIPHERALS_TASK_DEALLOCATE = 2;
-	public static final short QUANTUM = 2;
-	public static final short MEMORY_TASK_INITIAL = 0;
-	public static final short MEMORY_TASK_SUCCESS = 1;
-	public static final short MEMORY_TASK_NOT_SUCCESS = 3;
+	public static final int QUANTUM = 2;
+	public static final short MEMORY_TASK_STATUS_INITIAL = 0;
+	public static final short MEMORY_TASK_STATUS_SUCCESS = 1;
+	public static final short MEMORY_TASK_STATUS_NOT_SUCCESS = 2;
+	public static final short MEMORY_TASK_ACTION_TYPE_ALLOCATE = 1;
+	public static final short MEMORY_TASK_ACTION_TYPE_DEALLOCATE = 2;
+	public static final short MEMORY_TASK_ACTION_TYPE_DEALLOCATE_TO_ALLOCATE = 3;
 }

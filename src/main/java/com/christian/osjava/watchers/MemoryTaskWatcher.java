@@ -11,6 +11,8 @@ import com.christian.osjava.utils.Logger;
 public class MemoryTaskWatcher implements Runnable {
 	public void run() {
 		Logger.info("MemoryTaskWatcher initialized with success");
+		
+		while(OSStatus.get() == Constants.SYSTEM_STATUS_INITING);
 
 		while (OSStatus.get() == Constants.SYSTEM_STATUS_NORMAL) {
 			MemoryTask mt = OSMemoryTaskQueue.getMemoryTaskFromMTQ();
@@ -23,21 +25,20 @@ public class MemoryTaskWatcher implements Runnable {
 
 					if (allocatedMemory) {
 						Logger.info(String.format("MemoryTask success %s", mt.toString()));
-						mt.setSuccess();
+						mt.setStatusSuccess();
 					}
 					else {
 						Logger.info(String.format("MemoryTask not success %s", mt.toString()));
-						mt.setNotSuccess();
+						mt.setStatusNotSuccess();
 					}
 				}
 				else if (mt.getActionType() == Constants.MEMORY_TASK_DEALLOCATE) {
 					OSMemory.deallocateMemory(mt.getProcessId());
 					Logger.info(String.format("MemoryTask success %s", mt.toString()));
-					mt.getSuccess();
 				}
 				else if (mt.getActionType() == Constants.MEMORY_TASK_DEALLOCATE_TO_ALLOCATE) {
 					Logger.info(String.format("Trying preemption %s", mt.toString()));
-					mt.setNotSuccess();
+					// TODO: Implement preemption
 				}
 
 				System.gc();

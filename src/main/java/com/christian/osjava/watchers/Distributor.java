@@ -10,19 +10,21 @@ import com.christian.osjava.utils.Logger;
 public class Distributor implements Runnable {
 	public void run() {
 		Logger.info("Distributor initialized with success");
+		
+		while(OSStatus.get() == Constants.SYSTEM_STATUS_INITING);
 
 		while (OSStatus.get() == Constants.SYSTEM_STATUS_NORMAL) {
-			Process aux;
+			Process process;
 
-			aux = OSProcessQueues.getProcessFromFE();
-			if (aux != null) {
-				Logger.info(String.format("Got Process on Distributor from FE, %s", aux.toString()));
+			process = OSProcessQueues.getProcessFromFE();
+			if (process != null) {
+				Logger.info(String.format("Got Process on Distributor from FE, %s", process.toString()));
 
-				if (aux.getPriority() == Constants.REAL_TIME_PROCESS_PRIORITY) {
-					OSProcessQueues.addProcessOnFE(aux);
+				if (process.getPriority() == Constants.REAL_TIME_PROCESS_PRIORITY) {
+					OSProcessQueues.addProcessOnFTR(process);
 				}
 				else {
-					OSProcessQueues.addProcessOnFU(aux);
+					OSProcessQueues.addProcessOnFU(process);
 				}
 
 				System.gc();

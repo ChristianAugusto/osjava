@@ -7,7 +7,7 @@ import com.christian.osjava.models.MemoryPosition;
 
 public class OSMemory {
 	private static MemoryPosition[] MEMORY;
-	private static int MEMORY_USED;
+	private static long MEMORY_USED;
 
 	public static void init() {
 		Logger.info("Initing OSMemory");
@@ -32,14 +32,14 @@ public class OSMemory {
 		return MEMORY_USED == Constants.SYSTEM_MEMORY_TOTAL;
 	}
 
-	public static boolean systemMemoryWillHaveSpace(int qtdMemory) {
+	public static boolean systemMemoryWillHaveSpace(long qtdMemory) {
 		return MEMORY_USED + qtdMemory <= Constants.SYSTEM_MEMORY_TOTAL;
 	}
 
 	/**
 	 * System memory allocation. Do not call this function directly.
 	 */
-	public static boolean allocateMemory(String processId, int qtdMemory) {
+	public static boolean allocateMemory(String processId, long qtdMemory) {
 		qtdMemory *= Constants.SYSTEM_MEMORY_SCALE;
 
 		if (systemMemoryIsFull() || !systemMemoryWillHaveSpace(qtdMemory)) {

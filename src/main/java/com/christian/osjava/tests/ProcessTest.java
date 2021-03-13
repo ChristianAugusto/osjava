@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 
 public class ProcessTest {
 	public static void init() {
-		Process p1 = new Process('0', (byte) 1, (byte) 2, (byte) 64, (byte) 1, (byte) 0, (byte) 0, (byte) 2, null);
+		Process p1 = new Process('0', 1, 2, 64, 1, 0, 0, 2, null);
 		Queue<Process> testQueue = new LinkedList<Process>();
 
 		Gson gson = new Gson();

@@ -8,17 +8,17 @@ public class MemoryTask {
 	 */
 	private short actionType;
 	private String processId;
-	private int qtdMemory;
+	private long qtdMemory;
 	/**
 	 * Initial 0 - Success 1 - Not Success 2
 	 */
-	private short success;
+	private short status;
 
-	public MemoryTask(short actionType, String processId, int qtdMemory) {
+	public MemoryTask(short actionType, String processId, long qtdMemory) {
 		this.setActionType(actionType);
 		this.setProcessId(processId);
 		this.setQtdMemory(qtdMemory);
-		this.success = 0;
+		this.status = 0;
 	}
 
 	public short getActionType() {
@@ -37,24 +37,24 @@ public class MemoryTask {
 		this.processId = processId;
 	}
 
-	public int getQtdMemory() {
+	public long getQtdMemory() {
 		return qtdMemory;
 	}
 
-	public void setQtdMemory(int qtdMemory) {
+	public void setQtdMemory(long qtdMemory) {
 		this.qtdMemory = qtdMemory;
 	}
 
-	public short getSuccess() {
-		return success;
+	public short getStatus() {
+		return status;
 	}
 
-	public void setSuccess() {
-		this.success = 1;
+	public void setStatusSuccess() {
+		this.status = 1;
 	}
 
-	public void setNotSuccess() {
-		this.success = 2;
+	public void setStatusNotSuccess() {
+		this.status = 2;
 	}
 
 	public String toString() {

@@ -10,19 +10,19 @@ public class Process {
 	 */
 	private char priority;
 	private int arrivalTime;
-	private byte processingTime; // Seconds
+	private int processingTime; // Seconds
 	private long qtdMemory;
-	private byte qtdPrinters;
-	private byte qtdScanners;
-	private byte qtdModems;
-	private byte qtdCds;
-	private byte processedTime;
+	private int qtdPrinters;
+	private int qtdScanners;
+	private int qtdModems;
+	private int qtdCds;
+	private int processedTime;
 	private String curentProcessQueueId;
 
 	private static String processCreated = "0";
 
-	public Process(char priority, int arrivalTime, byte processingTime, long qtdMemory, byte qtdPrinters,
-			byte qtdScanners, byte qtdModems, byte qtdCds, String curentProcessQueueId) {
+	public Process(char priority, int arrivalTime, int processingTime, long qtdMemory, int qtdPrinters,
+			int qtdScanners, int qtdModems, int qtdCds, String curentProcessQueueId) {
 		this.setPriority(priority);
 		this.setArrivalTime(arrivalTime);
 		this.setProcessingTime(processingTime);
@@ -32,7 +32,7 @@ public class Process {
 		this.setQtdModems(qtdModems);
 		this.setQtdCds(qtdCds);
 		this.setCurentProcessQueueId(curentProcessQueueId);
-		this.setProcessedTime((byte) 0);
+		this.processedTime = (int) 0;
 		this.id = IdIncrement.increment(processCreated);
 	}
 
@@ -56,11 +56,11 @@ public class Process {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public byte getProcessingTime() {
+	public int getProcessingTime() {
 		return processingTime;
 	}
 
-	public void setProcessingTime(byte processingTime) {
+	public void setProcessingTime(int processingTime) {
 		this.processingTime = processingTime;
 	}
 
@@ -72,44 +72,44 @@ public class Process {
 		this.qtdMemory = qtdMemory;
 	}
 
-	public byte getQtdPrinters() {
+	public int getQtdPrinters() {
 		return qtdPrinters;
 	}
 
-	public void setQtdPrinters(byte qtdPrinters) {
+	public void setQtdPrinters(int qtdPrinters) {
 		this.qtdPrinters = qtdPrinters;
 	}
 
-	public byte getQtdScanners() {
+	public int getQtdScanners() {
 		return qtdScanners;
 	}
 
-	public void setQtdScanners(byte qtdScanners) {
+	public void setQtdScanners(int qtdScanners) {
 		this.qtdScanners = qtdScanners;
 	}
 
-	public byte getQtdModems() {
+	public int getQtdModems() {
 		return qtdModems;
 	}
 
-	public void setQtdModems(byte qtdModems) {
+	public void setQtdModems(int qtdModems) {
 		this.qtdModems = qtdModems;
 	}
 
-	public byte getQtdCds() {
+	public int getQtdCds() {
 		return qtdCds;
 	}
 
-	public void setQtdCds(byte qtdCds) {
+	public void setQtdCds(int qtdCds) {
 		this.qtdCds = qtdCds;
 	}
 
-	public byte getProcessedTime() {
+	public int getProcessedTime() {
 		return processedTime;
 	}
 
-	public void setProcessedTime(byte processedTime) {
-		this.processedTime = processedTime;
+	public void setProcessedTime(int processedTime) {
+		this.processedTime += processedTime;
 	}
 
 	public String getCurentProcessQueueId() {

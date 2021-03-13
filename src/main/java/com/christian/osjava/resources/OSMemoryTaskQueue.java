@@ -26,14 +26,15 @@ public class OSMemoryTaskQueue {
 		Logger.info("OSMemoryTaskQueue finished with success");
 	}
 
-	public static void addMemoryTaskOnMTQ(MemoryTask p) {
-		MTQ.add(p);
+	public static void addMemoryTaskOnMTQ(MemoryTask mt) {
+		MTQ.add(mt);
 	}
 
 	public static MemoryTask getMemoryTaskFromMTQ() {
 		try {
 			return MTQ.remove();
-		} catch (NoSuchElementException e) {
+		}
+		catch (NoSuchElementException e) {
 			return null;
 		}
 	}
