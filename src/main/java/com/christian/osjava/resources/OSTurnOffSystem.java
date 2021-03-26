@@ -24,7 +24,10 @@ public class OSTurnOffSystem {
 				}
 			}
 
-			if (cpsRunning == 0 && !OSMemoryTaskWatcher.isMemoryTaskWatcherRunning()) {
+			if (
+                cpsRunning == 0 &&
+                !OSMemoryTaskWatcher.isMemoryTaskWatcherRunning()
+            ) {
 				break;
 			}
 		}

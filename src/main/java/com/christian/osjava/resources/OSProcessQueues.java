@@ -13,6 +13,7 @@ public class OSProcessQueues {
 	private static Queue<Process> FU;
 	private static Queue<Process> FU2;
 	private static Queue<Process> FU3;
+    private static boolean queuesOn;
 
 	public static void init() {
 		Logger.info("Initing OSProcessQueues");
@@ -38,10 +39,13 @@ public class OSProcessQueues {
 		Logger.info("FU3 initialized with success");
 
 		Logger.info("OSProcessQueues initialized with success");
+
+        queuesOn = true;
 	}
 
 	public static void finish() {
-		Logger.info("Finishing OSProcessQueues");
+        Logger.info("Finishing OSProcessQueues");
+        queuesOn = false;
 
 		Logger.info("Finishing FE");
 		FE.clear();
@@ -72,12 +76,18 @@ public class OSProcessQueues {
 	}
 
 	public static void addProcessOnFE(Process p) {
-		FE.add(p);
+		if (isQueuesOn()) {
+            FE.add(p);
+        }
 	}
 
 	public static Process getProcessFromFE() {
 		try {
-			return FE.remove();
+            if (isQueuesOn()) {
+                return FE.remove();
+            }
+
+            return null;
 		}
 		catch (NoSuchElementException e) {
 			return null;
@@ -85,14 +95,20 @@ public class OSProcessQueues {
 	}
 
 	public static void addProcessOnFTR(Process p) {
-		if (p.getPriority() == Constants.REAL_TIME_PROCESS_PRIORITY) {
-			FTR.add(p);
-		}
+        if (isQueuesOn()) {
+            if (p.getPriority() == Constants.REAL_TIME_PROCESS_PRIORITY) {
+                FTR.add(p);
+            }
+        }
 	}
 
 	public static Process getProcessFromFTR() {
 		try {
-			return FTR.remove();
+            if (isQueuesOn()) {
+                return FTR.remove();
+            }
+
+            return null;
 		}
 		catch (NoSuchElementException e) {
 			return null;
@@ -100,14 +116,20 @@ public class OSProcessQueues {
 	}
 
 	public static void addProcessOnFU(Process p) {
-		if (p.getPriority() != Constants.REAL_TIME_PROCESS_PRIORITY) {
-			FU.add(p);
-		}
+        if (isQueuesOn()) {
+            if (p.getPriority() != Constants.REAL_TIME_PROCESS_PRIORITY) {
+                FU.add(p);
+            }
+        }
 	}
 
 	public static Process getProcessFromFU() {
 		try {
-			return FU.remove();
+            if (isQueuesOn()) {
+                return FU.remove();
+            }
+
+            return null;
 		}
 		catch (NoSuchElementException e) {
 			return null;
@@ -115,14 +137,20 @@ public class OSProcessQueues {
 	}
 
 	public static void addProcessOnFU2(Process p) {
-		if (p.getPriority() != Constants.REAL_TIME_PROCESS_PRIORITY) {
-			FU2.add(p);
-		}
+        if (isQueuesOn()) {
+            if (p.getPriority() != Constants.REAL_TIME_PROCESS_PRIORITY) {
+                FU2.add(p);
+            }
+        }
 	}
 
 	public static Process getProcessFromFU2() {
 		try {
-			return FU2.remove();
+            if (isQueuesOn()) {
+                return FU2.remove();
+            }
+
+            return null;
 		}
 		catch (NoSuchElementException e) {
 			return null;
@@ -130,17 +158,27 @@ public class OSProcessQueues {
 	}
 
 	public static void addProcessOnFU3(Process p) {
-		if (p.getPriority() != Constants.REAL_TIME_PROCESS_PRIORITY) {
-			FU3.add(p);
-		}
+        if (isQueuesOn()) {
+            if (p.getPriority() != Constants.REAL_TIME_PROCESS_PRIORITY) {
+                FU3.add(p);
+            }
+        }
 	}
 
 	public static Process getProcessFromFU3() {
 		try {
-			return FU3.remove();
+            if (isQueuesOn()) {
+                return FU3.remove();
+            }
+
+            return null;
 		}
 		catch (NoSuchElementException e) {
 			return null;
 		}
 	}
+
+    public static boolean isQueuesOn() {
+        return queuesOn;
+    }
 }

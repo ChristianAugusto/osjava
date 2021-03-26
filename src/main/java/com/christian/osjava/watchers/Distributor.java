@@ -10,7 +10,7 @@ import com.christian.osjava.utils.Logger;
 public class Distributor implements Runnable {
 	public void run() {
 		Logger.info("Distributor initialized with success");
-		
+
 		while(OSStatus.get() == Constants.SYSTEM_STATUS_INITING);
 
 		while (OSStatus.get() == Constants.SYSTEM_STATUS_NORMAL) {

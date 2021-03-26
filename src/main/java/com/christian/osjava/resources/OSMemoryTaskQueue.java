@@ -8,6 +8,7 @@ import com.christian.osjava.utils.Logger;
 
 public class OSMemoryTaskQueue {
 	private static Queue<MemoryTask> MTQ;
+    private static boolean queuesOn;
 
 	public static void init() {
 		Logger.info("Initing OSMemoryTaskQueue");
@@ -17,10 +18,14 @@ public class OSMemoryTaskQueue {
 		Logger.info("MTQ initialized with success");
 
 		Logger.info("OSMemoryTaskQueue initialized with success");
+
+        queuesOn = true;
 	}
 
 	public static void finish() {
-		Logger.info("Finishing OSMemoryTaskQueue");
+        Logger.info("Finishing OSMemoryTaskQueue");
+        queuesOn = false;
+
 		MTQ.clear();
 		MTQ = null;
 		Logger.info("OSMemoryTaskQueue finished with success");
@@ -32,10 +37,18 @@ public class OSMemoryTaskQueue {
 
 	public static MemoryTask getMemoryTaskFromMTQ() {
 		try {
-			return MTQ.remove();
+            if (isQueuesOn()) {
+                return MTQ.remove();
+            }
+
+            return null;
 		}
 		catch (NoSuchElementException e) {
 			return null;
 		}
 	}
+
+    public static boolean isQueuesOn() {
+        return queuesOn;
+    }
 }
